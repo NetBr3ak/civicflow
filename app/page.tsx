@@ -1,9 +1,8 @@
 "use client";
-import { useState, useCallback, useMemo } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// Define TypeScript interfaces for better type safety
 interface FormData {
   name: string;
   email: string;
@@ -20,7 +19,6 @@ interface FormErrors {
 }
 
 export default function Home() {
-  // Form state with minimal required fields
   const [form, setForm] = useState<FormData>({
     name: "",
     email: "",
@@ -29,7 +27,6 @@ export default function Home() {
     priority: "normal"
   });
 
-  // Form validation state
   const [errors, setErrors] = useState<FormErrors>({
     name: "",
     email: "",
@@ -42,8 +39,7 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
 
-  // Form validation function - memoized to improve performance
-  const validateForm = useCallback(() => {
+  const validateForm = () => {
     let isValid = true;
     const newErrors = { name: "", email: "", category: "", message: "" };
 
@@ -72,9 +68,8 @@ export default function Home() {
 
     setErrors(newErrors);
     return isValid;
-  }, [form]);
+  };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -91,7 +86,6 @@ export default function Home() {
     setLoading(true);
 
     try {
-      // Simple CSRF token generation for demo purposes
       const csrfToken = `token-${Date.now()}-${Math.random().toString(36).substring(2)}`;
 
       const res = await fetch("/api/report", {
@@ -127,19 +121,16 @@ export default function Home() {
     }
   };
 
-  // Handle input changes with validation
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setForm(prevForm => ({ ...prevForm, [name]: value }));
+    setForm(prev => ({ ...prev, [name]: value }));
 
-    // Clear error when user types
     if (errors[name as keyof FormErrors]) {
-      setErrors(prevErrors => ({ ...prevErrors, [name]: "" }));
+      setErrors(prev => ({ ...prev, [name]: "" }));
     }
-  }, [errors]);
+  };
 
-  // Reset form handler
-  const resetForm = useCallback(() => {
+  const resetForm = () => {
     setForm({
       name: "",
       email: "",
@@ -150,15 +141,11 @@ export default function Home() {
     setErrors({ name: "", email: "", category: "", message: "" });
     setStatus("");
     setTermsAccepted(false);
-  }, []);
+  };
 
-  // Status message styling
-  const statusClass = useMemo(() =>
-    status.includes('Success')
-      ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
-      : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
-    [status]
-  );
+  const statusClass = status.includes('Success')
+    ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+    : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400';
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
