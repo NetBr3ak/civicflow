@@ -149,7 +149,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      {/* Compact Header */}
       <header className="bg-blue-800 dark:bg-blue-900 text-white py-3 px-4 shadow-md">
         <div className="max-w-7xl mx-auto flex flex-row items-center justify-between">
           <div className="flex items-center">
@@ -174,10 +173,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-4">
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Form Section */}
           <div className="md:col-span-2 order-1">
             {submitted ? (
               <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 text-center">
@@ -205,7 +202,6 @@ export default function Home() {
 
                 <form onSubmit={handleSubmit} className="p-5 space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Name Field */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="name">
                         Full Name <span className="text-red-500">*</span>
@@ -223,7 +219,6 @@ export default function Home() {
                       {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">{errors.name}</p>}
                     </div>
 
-                    {/* Email Field */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="email">
                         Email Address <span className="text-red-500">*</span>
@@ -245,7 +240,6 @@ export default function Home() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Category Field */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="category">
                         Report Category <span className="text-red-500">*</span>
@@ -270,7 +264,6 @@ export default function Home() {
                       {errors.category && <p className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">{errors.category}</p>}
                     </div>
 
-                    {/* Priority Field */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="priority">
                         Priority Level
@@ -331,7 +324,6 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Message Field */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="message">
                       Report Details <span className="text-red-500">*</span>
@@ -350,7 +342,6 @@ export default function Home() {
                     {errors.message && <p className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">{errors.message}</p>}
                   </div>
 
-                  {/* Terms and Consent */}
                   <div className="flex items-start">
                     <input
                       id="terms"
@@ -366,7 +357,6 @@ export default function Home() {
                     </label>
                   </div>
 
-                  {/* Form Actions */}
                   <div className="flex flex-col sm:flex-row items-center justify-between pt-1">
                     <div className="w-full sm:w-auto mb-2 sm:mb-0">
                       {status && (
@@ -405,7 +395,6 @@ export default function Home() {
             )}
           </div>
 
-          {/* Info Side Panel - More compact */}
           <div className="md:col-span-1 order-2 md:order-1">
             <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-4 sticky top-4">
               <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Reporting Guidelines</h2>
@@ -442,7 +431,6 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Compact Footer */}
       <footer className="bg-gray-100 dark:bg-slate-900 mt-6 py-4 border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
