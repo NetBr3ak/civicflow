@@ -82,7 +82,6 @@ export default function Dashboard() {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-			{/* Compact Header */}
 			<header className="bg-blue-800 dark:bg-blue-900 text-white py-3 px-4 shadow-md">
 				<div className="max-w-7xl mx-auto flex flex-row items-center justify-between">
 					<div className="flex items-center">
@@ -112,7 +111,6 @@ export default function Dashboard() {
 					</div>
 				</div>
 			</header>
-			{/* Dashboard Content */}
 			<main className="max-w-7xl mx-auto px-4 py-4">
 				{loading ? (
 					<div className="flex justify-center items-center p-8">
@@ -131,12 +129,10 @@ export default function Dashboard() {
 					</div>
 				) : (
 					<div className="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden">
-						{/* Header Banner - More compact */}
 						<div className="bg-gradient-to-r from-blue-700 to-blue-600 p-4">
 							<h1 className="text-xl text-white font-bold">Reports Dashboard</h1>
 							<p className="text-sm text-blue-100">Review and manage submitted reports</p>
 						</div>
-						{/* Stats Summary - More efficient grid */}
 						<div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 border-b border-gray-200 dark:border-gray-700">
 							<div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 shadow-sm">
 								<p className="text-sm text-gray-500 dark:text-gray-400">Total Reports</p>
@@ -162,7 +158,6 @@ export default function Dashboard() {
 								</p>
 							</div>
 						</div>
-						{/* Reports List - Optimized layout */}
 						<div className="p-4">
 							<div className="flex justify-between items-center mb-3">
 								<h2 className="text-lg font-semibold text-gray-800 dark:text-white">All Reports</h2>
@@ -230,7 +225,6 @@ export default function Dashboard() {
 					</div>
 				)}
 			</main>
-			{/* Compact Footer */}
 			<footer className="bg-gray-100 dark:bg-slate-900 mt-6 py-4 border-t border-gray-200 dark:border-gray-800">
 				<div className="max-w-7xl mx-auto px-4">
 					<div className="flex flex-col md:flex-row justify-between items-center">
