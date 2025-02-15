@@ -325,9 +325,12 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="message">
-                      Report Details <span className="text-red-500">*</span>
-                    </label>
+                    <div className="flex justify-between items-center mb-1">
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300" htmlFor="message">
+                        Report Details <span className="text-red-500">*</span>
+                      </label>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{form.message.length}/500</span>
+                    </div>
                     <textarea
                       id="message"
                       name="message"
@@ -335,6 +338,7 @@ export default function Home() {
                       value={form.message}
                       onChange={handleInputChange}
                       rows={4}
+                      maxLength={500}
                       aria-invalid={errors.message ? "true" : "false"}
                       aria-required="true"
                       className={`w-full p-2 border ${errors.message ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:text-white`}
