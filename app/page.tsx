@@ -40,34 +40,19 @@ export default function Home() {
   const [termsAccepted, setTermsAccepted] = useState(false);
 
   const validateForm = () => {
-    let isValid = true;
     const newErrors = { name: "", email: "", category: "", message: "" };
 
-    if (!form.name.trim()) {
-      newErrors.name = "Name is required";
-      isValid = false;
-    }
-
+    if (!form.name.trim()) newErrors.name = "Name is required";
     if (!form.email.trim()) {
       newErrors.email = "Email is required";
-      isValid = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       newErrors.email = "Email is invalid";
-      isValid = false;
     }
-
-    if (!form.category) {
-      newErrors.category = "Please select a category";
-      isValid = false;
-    }
-
-    if (!form.message.trim()) {
-      newErrors.message = "Message is required";
-      isValid = false;
-    }
+    if (!form.category) newErrors.category = "Please select a category";
+    if (!form.message.trim()) newErrors.message = "Message is required";
 
     setErrors(newErrors);
-    return isValid;
+    return !Object.values(newErrors).some(err => err !== "");
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -357,7 +342,7 @@ export default function Home() {
                       aria-required="true"
                     />
                     <label htmlFor="terms" className="ml-2 block text-sm text-gray-600 dark:text-gray-400">
-                      I agree to the <a href="#" className="text-blue-600 hover:underline dark:text-blue-400">Terms of Service</a> and <a href="#" className="text-blue-600 hover:underline dark:text-blue-400">Privacy Policy</a>
+                      I agree to the <Link href="/terms" className="text-blue-600 hover:underline dark:text-blue-400">Terms of Service</Link> and <Link href="/privacy" className="text-blue-600 hover:underline dark:text-blue-400">Privacy Policy</Link>
                     </label>
                   </div>
 
