@@ -9,7 +9,7 @@ export default function Terms() {
 					<div className="flex items-center gap-3">
 						<Image
 							src="/globe.svg"
-							alt="CivicFlow Logo"
+							alt="CivicFlow"
 							width={32}
 							height={32}
 							className="dark:invert"

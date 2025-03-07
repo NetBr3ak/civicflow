@@ -87,13 +87,13 @@ export default function Dashboard() {
 					<div className="flex items-center gap-3">
 						<Image
 							src="/globe.svg"
-							alt="CivicFlow Logo"
+							alt="CivicFlow"
 							width={32}
 							height={32}
 							className="dark:invert"
 							priority
 						/>
-						<h1 className="text-xl font-bold text-gray-900 dark:text-white">CivicFlow Dashboard</h1>
+						<h1 className="text-xl font-bold text-gray-900 dark:text-white">CivicFlow</h1>
 					</div>
 					<Link href="/" className="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-900 dark:text-white rounded-lg transition">
 						← Back
@@ -102,19 +102,23 @@ export default function Dashboard() {
 			</header>
 			<main className="flex-1 max-w-7xl mx-auto px-4 py-8 w-full">
 				{loading ? (
-					<div className="flex justify-center items-center p-8">
-						<div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+					<div className="flex items-center justify-center h-64">
+						<div className="text-center">
+							<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+							<p className="mt-4 text-gray-600 dark:text-gray-400">Loading reports...</p>
+						</div>
 					</div>
 				) : error ? (
-					<div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/50 rounded-lg text-red-700 dark:text-red-400">
-						<h2 className="text-lg font-semibold mb-2">Error</h2>
-						<p>{error}</p>
-						<button
-							onClick={() => window.location.reload()}
-							className="mt-3 px-4 py-2 bg-red-100 dark:bg-red-900/30 rounded-md text-sm"
-						>
-							Retry
-						</button>
+					<div className="text-center py-8">
+						<div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 max-w-md mx-auto">
+							<p className="text-red-800 dark:text-red-300 mb-4">{error}</p>
+							<button
+								onClick={() => window.location.reload()}
+								className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition"
+							>
+								Retry
+							</button>
+						</div>
 					</div>
 				) : (
 					<div className="space-y-6">
@@ -192,16 +196,20 @@ export default function Dashboard() {
 					</div>
 				)}
 			</main>
-			<footer className="bg-gray-100 dark:bg-slate-900 mt-auto py-6 border-t border-gray-200 dark:border-gray-800">
-				<div className="max-w-7xl mx-auto px-4">
-					<div className="flex flex-col md:flex-row justify-between items-center">
-						<p className="text-xs text-gray-500 dark:text-gray-400">
-							&copy; {new Date().getFullYear()} CivicFlow. All rights reserved.
+
+			<footer className="mt-auto border-t border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm">
+				<div className="max-w-7xl mx-auto px-4 py-6">
+					<div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+						<p className="text-sm text-gray-600 dark:text-gray-400">
+							© 2025 CivicFlow. All rights reserved.
 						</p>
-						<div className="flex space-x-4 mt-2 md:mt-0">
-							<Link href="/" className="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Return to Home</Link>
-							<a href="#" className="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Help</a>
-							<a href="#" className="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+						<div className="flex gap-6 text-sm">
+							<Link href="/terms" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition">
+								Terms
+							</Link>
+							<Link href="/privacy" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition">
+								Privacy
+							</Link>
 						</div>
 					</div>
 				</div>
