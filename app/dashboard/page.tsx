@@ -68,7 +68,6 @@ export default function Dashboard() {
 		fetchReports();
 	}, []);
 
-	// Calculate metrics for dashboard
 	const recentReports = reports.filter(
 		r => new Date(r.createdAt) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
 	);
