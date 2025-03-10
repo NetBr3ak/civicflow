@@ -79,12 +79,10 @@ export default function Home() {
           "Content-Type": "application/json",
           "X-CSRF-Token": csrfToken
         },
-        body: JSON.stringify(form),
-        credentials: "same-origin"
+        body: JSON.stringify(form)
       });
 
       if (res.ok) {
-        const data = await res.json();
         setStatus("Success! Your report has been submitted.");
         setForm({
           name: "",
@@ -96,11 +94,10 @@ export default function Home() {
         setSubmitted(true);
       } else {
         const errorData = await res.json();
-        setStatus(`Submission failed: ${errorData.message || "Please try again later."}`);
+        setStatus(`Failed: ${errorData.message || "Please try again."}`);
       }
     } catch (error) {
-      setStatus("An unexpected error occurred. Please try again.");
-      console.error("Submission error:", error);
+      setStatus("An error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -381,34 +378,18 @@ export default function Home() {
 
           <div className="md:col-span-1 order-2 md:order-1">
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 sticky top-4">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Reporting Guidelines</h2>
+              <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Guidelines</h2>
 
-              <div className="space-y-4 text-gray-600 dark:text-gray-300">
-                <div className="flex items-start">
-                  <div className="bg-blue-100 dark:bg-blue-900 p-1 rounded-full mr-2">
-                    <Image src="/file.svg" alt="Document" width={16} height={16} className="dark:invert" />
-                  </div>
-                  <p className="text-xs">Provide accurate and detailed information to help us process your report efficiently.</p>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-blue-100 dark:bg-blue-900 p-1 rounded-full mr-2">
-                    <Image src="/window.svg" alt="Priority" width={16} height={16} className="dark:invert" />
-                  </div>
-                  <p className="text-xs">Select the appropriate category and priority level for your report.</p>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-blue-100 dark:bg-blue-900 p-1 rounded-full mr-2">
-                    <Image src="/globe.svg" alt="Tracking" width={16} height={16} className="dark:invert" />
-                  </div>
-                  <p className="text-xs">You'll receive email updates about the status of your submission.</p>
-                </div>
+              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                <p>• Provide accurate information</p>
+                <p>• Select the right category</p>
+                <p>• Choose priority level</p>
+                <p>• Keep details clear and concise</p>
               </div>
 
               <div className="mt-5 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-                <h3 className="font-medium text-blue-800 dark:text-blue-300 text-xs">Need urgent assistance?</h3>
-                <p className="text-xs mt-1 text-gray-600 dark:text-gray-300">Call our hotline at (555) 123-4567.</p>
+                <p className="text-sm font-medium text-blue-800 dark:text-blue-300">Need help?</p>
+                <p className="text-xs mt-1 text-gray-600 dark:text-gray-300">Contact: support@civicflow.com</p>
               </div>
             </div>
           </div>

@@ -4,11 +4,7 @@ import { PrismaClient } from "@prisma/client";
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
-const prisma =
-	globalForPrisma.prisma ||
-	new PrismaClient({
-		log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-	});
+const prisma = globalForPrisma.prisma || new PrismaClient();
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
@@ -35,10 +31,7 @@ export async function POST(req: Request) {
 		if (!result.success) {
 			return NextResponse.json({
 				message: "Validation failed",
-				errors: result.error.errors.map(e => ({
-					path: e.path.join('.'),
-					message: e.message
-				}))
+				errors: result.error.errors
 			}, { status: 400 });
 		}
 
@@ -49,12 +42,9 @@ export async function POST(req: Request) {
 			report
 		}, { status: 201 });
 	} catch (error) {
-		console.error("Report submission error:", error);
 		return NextResponse.json({
-			message: "An error occurred while processing your request"
-		}, {
-			status: 500
-		});
+			message: "An error occurred"
+		}, { status: 500 });
 	}
 }
 
@@ -63,10 +53,8 @@ export async function GET() {
 		const reports = await prisma.report.findMany({
 			orderBy: { createdAt: "desc" }
 		});
-
 		return NextResponse.json({ reports });
 	} catch (error) {
-		console.error("Error fetching reports:", error);
 		return NextResponse.json({ message: "Failed to fetch reports" }, { status: 500 });
 	}
 }
