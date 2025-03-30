@@ -146,49 +146,59 @@ export default function Dashboard() {
 							</div>
 						</div>
 						<div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
-							<div className="border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+							<div className="bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-800 dark:to-slate-700 border-b border-gray-200 dark:border-gray-700 px-6 py-5">
 								<div className="flex justify-between items-center">
-									<h2 className="text-lg font-semibold text-gray-800 dark:text-white">Recent Reports</h2>
-									<Link href="/" className="text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition">
+									<div>
+										<h2 className="text-xl font-bold text-gray-900 dark:text-white">Recent Reports</h2>
+										<p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+											{reports.length} {reports.length === 1 ? 'report' : 'reports'} submitted
+										</p>
+									</div>
+									<Link href="/" className="text-sm px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition shadow-sm hover:shadow-md font-medium">
 										+ New Report
 									</Link>
 								</div>
 							</div>
-							<div className="p-6 space-y-3">
+							<div className="divide-y divide-gray-100 dark:divide-gray-700">
 								{reports.length === 0 ? (
-									<div className="text-center py-12">
-										<p className="text-gray-500 dark:text-gray-400">No reports yet</p>
+									<div className="text-center py-16">
+										<div className="text-gray-400 dark:text-gray-500 text-5xl mb-3">📋</div>
+										<p className="text-gray-600 dark:text-gray-400 font-medium">No reports yet</p>
+										<p className="text-sm text-gray-500 dark:text-gray-500 mt-1">Reports will appear here once submitted</p>
 									</div>
 								) : (
 									reports.map(report => (
 										<div
 											key={report.id}
-											className={`p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/50 transition border-l-4 ${report.priority === 'high' ? 'border-l-orange-500' : report.priority === 'low' ? 'border-l-green-500' : 'border-l-blue-500'}`}
+											className="p-5 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition group"
 										>
-											<div className="flex items-start justify-between gap-4">
-												<div className="flex items-start gap-3 flex-1 min-w-0">
-													<div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold flex-shrink-0">
+											<div className="flex items-start gap-4">
+												<div className={`w-1 h-full rounded-full flex-shrink-0 ${report.priority === 'high' ? 'bg-orange-500' : report.priority === 'low' ? 'bg-green-500' : 'bg-blue-500'}`}></div>
+												<div className="flex items-start gap-4 flex-1">
+													<div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-sm">
 														{report.name.charAt(0).toUpperCase()}
 													</div>
 													<div className="flex-1 min-w-0">
-														<div className="flex items-center gap-2 flex-wrap mb-1">
-															<p className="font-semibold text-gray-900 dark:text-white">{report.name}</p>
-															<span className={`text-xs px-2 py-0.5 rounded-full ${getCategoryStyle(report.category)}`}>
-																{report.category}
-															</span>
-															{report.priority !== 'normal' && (
-																<span className={`text-xs font-medium ${getPriorityStyle(report.priority)}`}>
-																	{report.priority}
+														<div className="flex items-start justify-between gap-4 mb-2">
+															<div className="flex items-center gap-2 flex-wrap">
+																<p className="font-semibold text-gray-900 dark:text-white text-base">{report.name}</p>
+																<span className={`text-xs px-2.5 py-1 rounded-full font-medium ${getCategoryStyle(report.category)}`}>
+																	{report.category}
 																</span>
-															)}
+																{report.priority !== 'normal' && (
+																	<span className={`text-xs px-2.5 py-1 rounded-full font-medium ${getPriorityStyle(report.priority)}`}>
+																		{report.priority === 'high' ? '🔴' : '🟢'} {report.priority}
+																	</span>
+																)}
+															</div>
+															<span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap font-medium">
+																{formatDate(report.createdAt)}
+															</span>
 														</div>
-														<p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{report.email}</p>
-														<p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-2">{report.message}</p>
+														<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{report.email}</p>
+														<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{report.message}</p>
 													</div>
 												</div>
-												<span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
-													{formatDate(report.createdAt)}
-												</span>
 											</div>
 										</div>
 									))
