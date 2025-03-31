@@ -13,5 +13,6 @@ model Report {
   email     String
   category  String
   message   String
+  priority  String   @default("normal")
   createdAt DateTime @default(now())
 }
