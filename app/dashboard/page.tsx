@@ -124,117 +124,76 @@ export default function Dashboard() {
 					</div>
 				) : (
 					<div className="space-y-6">
-						<div className="flex items-center justify-between">
+						<div className="flex items-center justify-between mb-2">
 							<div>
 								<h2 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h2>
-								<p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Manage and track civic reports</p>
+								<p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Monitor and manage reports</p>
 							</div>
-							<Link href="/" className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition text-sm font-semibold shadow-sm hover:shadow-md">
+							<Link href="/" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition text-sm font-medium">
 								+ New Report
 							</Link>
 						</div>
 
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-							<div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-5 text-white shadow-lg">
-								<div className="flex items-center justify-between mb-2">
-									<span className="text-sm font-medium opacity-90">Total Reports</span>
-									<span className="text-2xl">📊</span>
-								</div>
-								<p className="text-4xl font-bold">{reports.length}</p>
+							<div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-gray-200 dark:border-gray-700">
+								<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Total Reports</p>
+								<p className="text-3xl font-bold text-gray-900 dark:text-white">{reports.length}</p>
 							</div>
-							<div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-5 text-white shadow-lg">
-								<div className="flex items-center justify-between mb-2">
-									<span className="text-sm font-medium opacity-90">This Week</span>
-									<span className="text-2xl">📅</span>
-								</div>
-								<p className="text-4xl font-bold">{recentReports.length}</p>
+							<div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-gray-200 dark:border-gray-700">
+								<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">This Week</p>
+								<p className="text-3xl font-bold text-gray-900 dark:text-white">{recentReports.length}</p>
 							</div>
-							<div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-5 text-white shadow-lg">
-								<div className="flex items-center justify-between mb-2">
-									<span className="text-sm font-medium opacity-90">Categories</span>
-									<span className="text-2xl">🏷️</span>
-								</div>
-								<p className="text-4xl font-bold">{uniqueCategories}</p>
+							<div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-gray-200 dark:border-gray-700">
+								<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Categories</p>
+								<p className="text-3xl font-bold text-gray-900 dark:text-white">{uniqueCategories}</p>
 							</div>
-							<div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-5 text-white shadow-lg">
-								<div className="flex items-center justify-between mb-2">
-									<span className="text-sm font-medium opacity-90">High Priority</span>
-									<span className="text-2xl">⚠️</span>
-								</div>
-								<p className="text-4xl font-bold">{priorityCounts.high || 0}</p>
+							<div className="bg-white dark:bg-slate-800 rounded-lg p-5 border border-gray-200 dark:border-gray-700">
+								<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">High Priority</p>
+								<p className="text-3xl font-bold text-orange-600 dark:text-orange-400">{priorityCounts.high || 0}</p>
 							</div>
 						</div>
 
-						<div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
-							<div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-slate-700/50">
-								<div className="flex items-center justify-between">
-									<div>
-										<h3 className="text-lg font-bold text-gray-900 dark:text-white">Recent Activity</h3>
-										<p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{reports.length} reports to review</p>
-									</div>
-									<div className="flex gap-2">
-										<button className="px-3 py-1.5 text-xs bg-white dark:bg-slate-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition font-medium text-gray-700 dark:text-gray-300">
-											Filter
-										</button>
-										<button className="px-3 py-1.5 text-xs bg-white dark:bg-slate-800 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700 transition font-medium text-gray-700 dark:text-gray-300">
-											Sort
-										</button>
-									</div>
-								</div>
+						<div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+							<div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+								<h3 className="text-lg font-semibold text-gray-900 dark:text-white">All Reports</h3>
+								<p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{reports.length} total</p>
 							</div>
 							<div className="divide-y divide-gray-100 dark:divide-gray-700">
 								{reports.length === 0 ? (
-									<div className="p-16 text-center">
-										<div className="text-gray-300 dark:text-gray-600 text-6xl mb-4">📋</div>
-										<p className="text-gray-600 dark:text-gray-400 font-semibold text-lg">No reports yet</p>
-										<p className="text-sm text-gray-500 dark:text-gray-500 mt-2">Submit your first report to get started</p>
-										<Link href="/" className="inline-block mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition text-sm font-medium">
-											Create Report
-										</Link>
+									<div className="p-12 text-center">
+										<div className="text-gray-300 dark:text-gray-600 text-5xl mb-3">📋</div>
+										<p className="text-gray-600 dark:text-gray-400 font-medium">No reports yet</p>
+										<p className="text-sm text-gray-500 dark:text-gray-500 mt-1">Submit your first report</p>
 									</div>
 								) : (
 									reports.map(report => (
 										<div
 											key={report.id}
-											className="p-6 hover:bg-gray-50 dark:hover:bg-slate-700/30 transition group"
+											className="p-5 hover:bg-gray-50 dark:hover:bg-slate-700/30 transition"
 										>
-											<div className="flex items-start gap-5">
-												<div className={`w-1 self-stretch rounded-full ${report.priority === 'high' ? 'bg-orange-500' : report.priority === 'low' ? 'bg-green-500' : 'bg-blue-500'}`}></div>
-												<div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-md flex-shrink-0">
+											<div className="flex items-start gap-4">
+												<div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0">
 													{report.name.charAt(0).toUpperCase()}
 												</div>
 												<div className="flex-1 min-w-0">
-													<div className="flex items-start justify-between gap-4 mb-2">
-														<div>
-															<div className="flex items-center gap-2 mb-1">
-																<h4 className="font-bold text-gray-900 dark:text-white text-base">{report.name}</h4>
-																<span className={`text-xs px-2.5 py-1 rounded-md font-semibold ${getCategoryStyle(report.category)}`}>
-																	{report.category}
+													<div className="flex items-center justify-between gap-3 mb-2">
+														<div className="flex items-center gap-2 flex-wrap">
+															<h4 className="font-semibold text-gray-900 dark:text-white">{report.name}</h4>
+															<span className={`text-xs px-2 py-0.5 rounded font-medium ${getCategoryStyle(report.category)}`}>
+																{report.category}
+															</span>
+															{report.priority !== 'normal' && (
+																<span className={`text-xs px-2 py-0.5 rounded font-medium ${report.priority === 'high' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' : 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'}`}>
+																	{report.priority}
 																</span>
-																{report.priority !== 'normal' && (
-																	<span className={`text-xs px-2.5 py-1 rounded-md font-semibold uppercase ${report.priority === 'high' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' : 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'}`}>
-																		{report.priority}
-																	</span>
-																)}
-															</div>
-															<p className="text-sm text-gray-600 dark:text-gray-400">{report.email}</p>
+															)}
 														</div>
-														<span className="text-xs text-gray-500 dark:text-gray-400 font-medium whitespace-nowrap">
+														<span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
 															{formatDate(report.createdAt)}
 														</span>
 													</div>
-													<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">{report.message}</p>
-													<div className="flex gap-2">
-														<button className="px-3 py-1.5 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-medium">
-															View Details
-														</button>
-														<button className="px-3 py-1.5 text-xs bg-green-600 hover:bg-green-700 text-white rounded-lg transition font-medium">
-															Mark Resolved
-														</button>
-														<button className="px-3 py-1.5 text-xs bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition font-medium">
-															Archive
-														</button>
-													</div>
+													<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{report.email}</p>
+													<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{report.message}</p>
 												</div>
 											</div>
 										</div>
