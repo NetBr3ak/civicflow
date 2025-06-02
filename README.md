@@ -26,16 +26,19 @@ npm run dev
 ## features
 
 - submit reports with categories
-- priority levels
-- dashboard to view all reports
-- form validation
-- dark mode
+- priority levels (high, normal, low)
+- admin dashboard with stats
+- sorting (date, priority, category)
+- filtering by category and priority
+- form validation with zod
+- dark mode support
+- clean professional design
 
 ## todo
 
-- email notifications maybe
+- email notifications
 - file uploads
-- better filtering on dashboard
 - auth system
+- report status updates
 
 built by NetBr3ak
