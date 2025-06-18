@@ -1,12 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { PrismaClient } from "@prisma/client";
-
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
-
-const prisma = globalForPrisma.prisma || new PrismaClient();
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+import { prisma } from "@/lib/prisma";
 
 const reportSchema = z.object({
 	name: z.string().min(2, "Name must be at least 2 characters"),
