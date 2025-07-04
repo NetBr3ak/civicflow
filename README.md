@@ -9,16 +9,22 @@ A modern web application where citizens can report local issues and administrato
 ## Screenshots
 
 ### Report Submission Form
-![Report Form](./public/screenshots/form.png)
+
+#### Before Submission
+![Report Form - Before](./public/screenshots/form-before.png)
 *Clean and intuitive form for submitting civic reports with category selection and priority levels*
+
+#### After Submission
+![Report Form - Success](./public/screenshots/form-after.png)
+*Success confirmation with smooth fade-in animation after report submission*
 
 ### Admin Dashboard
 ![Dashboard](./public/screenshots/dashboard.png)
 *Professional dashboard with statistics, filtering, and sorting capabilities*
 
 ### Reports Management
-![Reports](./public/screenshots/reports.png)
-*Comprehensive view of all submitted reports with detailed information*
+![Reports List](./public/screenshots/reports.png)
+*Comprehensive view of all submitted reports with detailed information and status indicators*
 
 ## tech stack
 
