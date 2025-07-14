@@ -14,5 +14,6 @@ model Report {
   category  String
   message   String
   priority  String   @default("normal")
+  status    String   @default("pending")
   createdAt DateTime @default(now())
 }
