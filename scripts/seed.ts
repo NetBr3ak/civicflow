@@ -40,7 +40,7 @@ async function main() {
 		},
 	});
 
-	console.log('Created 3 sample reports');
+	console.log('Created 3 sample reports with different dates and statuses');
 }
 
 main()
