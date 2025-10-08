@@ -46,6 +46,9 @@ export default function Dashboard() {
 	const [reports, setReports] = useState<Report[]>([]);
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(true);
+	const [sortBy, setSortBy] = useState<'date' | 'priority' | 'category'>('date');
+	const [filterCategory, setFilterCategory] = useState<string>('all');
+	const [filterPriority, setFilterPriority] = useState<string>('all');
 
 	useEffect(() => {
 		const fetchReports = async () => {
@@ -78,6 +81,26 @@ export default function Dashboard() {
 		acc[priority] = (acc[priority] || 0) + 1;
 		return acc;
 	}, {});
+
+	const filteredReports = reports.filter(report => {
+		if (filterCategory !== 'all' && report.category !== filterCategory) return false;
+		if (filterPriority !== 'all' && report.priority !== filterPriority) return false;
+		return true;
+	});
+
+	const sortedReports = [...filteredReports].sort((a, b) => {
+		if (sortBy === 'date') {
+			return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+		}
+		if (sortBy === 'priority') {
+			const priorityOrder = { high: 3, normal: 2, low: 1 };
+			return (priorityOrder[b.priority as keyof typeof priorityOrder] || 0) - (priorityOrder[a.priority as keyof typeof priorityOrder] || 0);
+		}
+		if (sortBy === 'category') {
+			return a.category.localeCompare(b.category);
+		}
+		return 0;
+	});
 
 	return (
 		<div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
@@ -155,18 +178,64 @@ export default function Dashboard() {
 
 						<div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
 							<div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-								<h3 className="text-lg font-semibold text-gray-900 dark:text-white">All Reports</h3>
-								<p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{reports.length} total</p>
+								<div className="flex items-center justify-between mb-3">
+									<div>
+										<h3 className="text-lg font-semibold text-gray-900 dark:text-white">All Reports</h3>
+										<p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{sortedReports.length} of {reports.length} shown</p>
+									</div>
+								</div>
+								<div className="flex flex-wrap gap-3">
+									<div className="flex items-center gap-2">
+										<label className="text-sm text-gray-600 dark:text-gray-400 font-medium">Sort:</label>
+										<select
+											value={sortBy}
+											onChange={(e) => setSortBy(e.target.value as 'date' | 'priority' | 'category')}
+											className="text-sm px-3 py-1.5 bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white"
+										>
+											<option value="date">Date</option>
+											<option value="priority">Priority</option>
+											<option value="category">Category</option>
+										</select>
+									</div>
+									<div className="flex items-center gap-2">
+										<label className="text-sm text-gray-600 dark:text-gray-400 font-medium">Category:</label>
+										<select
+											value={filterCategory}
+											onChange={(e) => setFilterCategory(e.target.value)}
+											className="text-sm px-3 py-1.5 bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white"
+										>
+											<option value="all">All</option>
+											<option value="Infrastructure">Infrastructure</option>
+											<option value="Environmental">Environmental</option>
+											<option value="Public Safety">Public Safety</option>
+											<option value="Education">Education</option>
+											<option value="Healthcare">Healthcare</option>
+										</select>
+									</div>
+									<div className="flex items-center gap-2">
+										<label className="text-sm text-gray-600 dark:text-gray-400 font-medium">Priority:</label>
+										<select
+											value={filterPriority}
+											onChange={(e) => setFilterPriority(e.target.value)}
+											className="text-sm px-3 py-1.5 bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white"
+										>
+											<option value="all">All</option>
+											<option value="high">High</option>
+											<option value="normal">Normal</option>
+											<option value="low">Low</option>
+										</select>
+									</div>
+								</div>
 							</div>
 							<div className="divide-y divide-gray-100 dark:divide-gray-700">
-								{reports.length === 0 ? (
+								{sortedReports.length === 0 ? (
 									<div className="p-12 text-center">
 										<div className="text-gray-300 dark:text-gray-600 text-5xl mb-3">📋</div>
-										<p className="text-gray-600 dark:text-gray-400 font-medium">No reports yet</p>
-										<p className="text-sm text-gray-500 dark:text-gray-500 mt-1">Submit your first report</p>
+										<p className="text-gray-600 dark:text-gray-400 font-medium">No reports match filters</p>
+										<p className="text-sm text-gray-500 dark:text-gray-500 mt-1">Try adjusting your filters</p>
 									</div>
 								) : (
-									reports.map(report => (
+									sortedReports.map(report => (
 										<div
 											key={report.id}
 											className="p-5 hover:bg-gray-50 dark:hover:bg-slate-700/30 transition"
