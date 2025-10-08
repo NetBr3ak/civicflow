@@ -123,77 +123,79 @@ export default function Dashboard() {
 						</div>
 					</div>
 				) : (
-					<div className="space-y-6">
-						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-							<div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md transition">
-								<p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Total Reports</p>
-								<p className="text-3xl font-bold text-gray-900 dark:text-white">{reports.length}</p>
-							</div>
-
-							<div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md transition">
-								<p className="text-sm text-gray-600 dark:text-gray-400 mb-1">This Week</p>
-								<p className="text-3xl font-bold text-gray-900 dark:text-white">{recentReports.length}</p>
-							</div>
-
-							<div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md transition">
-								<p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Categories</p>
-								<p className="text-3xl font-bold text-gray-900 dark:text-white">{uniqueCategories}</p>
-							</div>
-
-							<div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md transition">
-								<p className="text-sm text-gray-600 dark:text-gray-400 mb-1">High Priority</p>
-								<p className="text-3xl font-bold text-gray-900 dark:text-white">{priorityCounts.high || 0}</p>
-							</div>
-						</div>
-						<div>
-							<div className="flex justify-between items-center mb-4">
+					<div className="space-y-8">
+						<div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+							<div className="flex items-center justify-between mb-6">
 								<div>
-									<h2 className="text-2xl font-bold text-gray-900 dark:text-white">Recent Reports</h2>
-									<p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-										{reports.length} total
-									</p>
+									<h2 className="text-xl font-bold text-gray-900 dark:text-white">Overview</h2>
+									<p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Report statistics</p>
 								</div>
-								<Link href="/" className="text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-medium">
-									+ New
+								<Link href="/" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition text-sm font-medium">
+									+ New Report
 								</Link>
 							</div>
-							<div className="space-y-3">
+							<div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+								<div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg border border-blue-200 dark:border-blue-800">
+									<p className="text-3xl font-bold text-blue-600 dark:text-blue-400">{reports.length}</p>
+									<p className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">Total</p>
+								</div>
+								<div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg border border-green-200 dark:border-green-800">
+									<p className="text-3xl font-bold text-green-600 dark:text-green-400">{recentReports.length}</p>
+									<p className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">This Week</p>
+								</div>
+								<div className="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg border border-purple-200 dark:border-purple-800">
+									<p className="text-3xl font-bold text-purple-600 dark:text-purple-400">{uniqueCategories}</p>
+									<p className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">Categories</p>
+								</div>
+								<div className="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg border border-orange-200 dark:border-orange-800">
+									<p className="text-3xl font-bold text-orange-600 dark:text-orange-400">{priorityCounts.high || 0}</p>
+									<p className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-medium">High Priority</p>
+								</div>
+							</div>
+						</div>
+
+						<div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+							<div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+								<h3 className="text-lg font-bold text-gray-900 dark:text-white">All Reports</h3>
+								<p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{reports.length} submitted</p>
+							</div>
+							<div className="divide-y divide-gray-100 dark:divide-gray-700">
 								{reports.length === 0 ? (
-									<div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
-										<div className="text-gray-400 dark:text-gray-500 text-4xl mb-2">📋</div>
-										<p className="text-gray-500 dark:text-gray-400">No reports yet</p>
+									<div className="p-12 text-center">
+										<div className="text-gray-400 dark:text-gray-500 text-5xl mb-3">📋</div>
+										<p className="text-gray-600 dark:text-gray-400 font-medium">No reports submitted</p>
+										<p className="text-sm text-gray-500 dark:text-gray-500 mt-1">New reports will appear here</p>
 									</div>
 								) : (
 									reports.map(report => (
 										<div
 											key={report.id}
-											className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition"
+											className="p-5 hover:bg-gray-50 dark:hover:bg-slate-700/30 transition cursor-pointer"
 										>
 											<div className="flex items-start gap-4">
-												<div className="flex-shrink-0">
-													<div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-sm">
+												<div className={`w-1.5 h-full rounded-full flex-shrink-0 ${report.priority === 'high' ? 'bg-orange-500' : report.priority === 'low' ? 'bg-green-500' : 'bg-blue-500'}`}></div>
+												<div className="flex items-start gap-3 flex-1 min-w-0">
+													<div className="w-11 h-11 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-sm flex-shrink-0">
 														{report.name.charAt(0).toUpperCase()}
 													</div>
-												</div>
-												<div className="flex-1 min-w-0">
-													<div className="flex items-center justify-between gap-3 mb-2">
-														<div className="flex items-center gap-2 flex-wrap">
-															<h3 className="font-semibold text-gray-900 dark:text-white">{report.name}</h3>
-															<span className={`text-xs px-2 py-0.5 rounded font-medium ${getCategoryStyle(report.category)}`}>
+													<div className="flex-1 min-w-0">
+														<div className="flex items-center gap-2 mb-1.5 flex-wrap">
+															<h4 className="font-semibold text-gray-900 dark:text-white">{report.name}</h4>
+															<span className={`text-xs px-2 py-0.5 rounded-md font-medium ${getCategoryStyle(report.category)}`}>
 																{report.category}
 															</span>
 															{report.priority !== 'normal' && (
-																<span className={`text-xs px-2 py-0.5 rounded font-medium ${getPriorityStyle(report.priority)}`}>
+																<span className={`text-xs px-2 py-0.5 rounded-md font-medium ${getPriorityStyle(report.priority)}`}>
 																	{report.priority}
 																</span>
 															)}
+															<span className="text-xs text-gray-500 dark:text-gray-400 ml-auto">
+																{formatDate(report.createdAt)}
+															</span>
 														</div>
-														<span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
-															{formatDate(report.createdAt)}
-														</span>
+														<p className="text-sm text-gray-600 dark:text-gray-400 mb-1.5">{report.email}</p>
+														<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-2">{report.message}</p>
 													</div>
-													<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{report.email}</p>
-													<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{report.message}</p>
 												</div>
 											</div>
 										</div>
