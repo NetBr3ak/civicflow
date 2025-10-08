@@ -80,6 +80,13 @@ export default function Dashboard() {
 		return acc;
 	}, {});
 
+	const stats = [
+		{ label: "Total Reports", value: reports.length, color: "blue" },
+		{ label: "Recent Reports", value: recentReports.length, color: "green", subtext: "Last 7 days" },
+		{ label: "Categories", value: uniqueCategories, color: "purple" },
+		{ label: "High Priority", value: priorityCounts.high || 0, color: "orange" }
+	];
+
 	return (
 		<div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
 			<header className="bg-blue-800 dark:bg-blue-900 text-white py-4 px-4 shadow-md">
@@ -134,29 +141,15 @@ export default function Dashboard() {
 							<p className="text-sm text-blue-100 mt-1">Review and manage submitted reports</p>
 						</div>
 						<div className="grid grid-cols-1 sm:grid-cols-4 gap-4 p-6 border-b border-gray-200 dark:border-gray-700">
-							<div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 shadow-sm">
-								<p className="text-sm text-gray-500 dark:text-gray-400">Total Reports</p>
-								<p className="text-xl font-bold text-gray-900 dark:text-white">{reports.length}</p>
-							</div>
-							<div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 shadow-sm">
-								<p className="text-sm text-gray-500 dark:text-gray-400">Recent Reports</p>
-								<p className="text-xl font-bold text-gray-900 dark:text-white">
-									{recentReports.length}
-									<span className="text-xs font-normal ml-2 text-gray-500 dark:text-gray-400">Last 7 days</span>
-								</p>
-							</div>
-							<div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 shadow-sm">
-								<p className="text-sm text-gray-500 dark:text-gray-400">Categories</p>
-								<p className="text-xl font-bold text-gray-900 dark:text-white">
-									{uniqueCategories}
-								</p>
-							</div>
-							<div className="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-3 shadow-sm">
-								<p className="text-sm text-gray-500 dark:text-gray-400">High Priority</p>
-								<p className="text-xl font-bold text-gray-900 dark:text-white">
-									{priorityCounts.high || 0}
-								</p>
-							</div>
+							{stats.map((stat, idx) => (
+								<div key={idx} className={`bg-${stat.color}-50 dark:bg-${stat.color}-900/20 rounded-lg p-3 shadow-sm`}>
+									<p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
+									<p className="text-xl font-bold text-gray-900 dark:text-white">
+										{stat.value}
+										{stat.subtext && <span className="text-xs font-normal ml-2 text-gray-500 dark:text-gray-400">{stat.subtext}</span>}
+									</p>
+								</div>
+							))}
 						</div>
 						<div className="p-6">
 							<div className="flex justify-between items-center mb-4">

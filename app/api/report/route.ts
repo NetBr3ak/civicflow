@@ -24,8 +24,6 @@ export type ReportInput = z.infer<typeof reportSchema>;
 
 export async function POST(req: Request) {
 	try {
-		const origin = req.headers.get('origin');
-
 		const csrfToken = req.headers.get('X-CSRF-Token');
 		if (!csrfToken) {
 			return NextResponse.json({ message: "Missing CSRF token" }, { status: 403 });
@@ -35,25 +33,21 @@ export async function POST(req: Request) {
 		const result = reportSchema.safeParse(body);
 
 		if (!result.success) {
-			const { errors } = result.error;
 			return NextResponse.json({
 				message: "Validation failed",
-				errors: errors.map(e => ({ path: e.path.join('.'), message: e.message }))
-			}, {
-				status: 400
-			});
+				errors: result.error.errors.map(e => ({
+					path: e.path.join('.'),
+					message: e.message
+				}))
+			}, { status: 400 });
 		}
 
-		const report = await prisma.report.create({
-			data: result.data
-		});
+		const report = await prisma.report.create({ data: result.data });
 
 		return NextResponse.json({
 			message: "Report submitted successfully",
 			report
-		}, {
-			status: 201
-		});
+		}, { status: 201 });
 	} catch (error) {
 		console.error("Report submission error:", error);
 		return NextResponse.json({
