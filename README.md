@@ -8,8 +8,6 @@ A modern web application where citizens can report local issues and administrato
 
 ## Screenshots
 
-### Screenshots
-
 **Report Submission Form**
 ![Report Form - Before](./public/screenshots/form-before.png)
 *Form with validation, character counter (500 max), 5 categories, 3 priority levels*
@@ -56,8 +54,6 @@ Open [http://localhost:3000](http://localhost:3000) to view the app
 
 ## Features
 
-## Features
-
 **Report Submission**
 - 5 categories: Infrastructure, Education, Public Safety, Healthcare, Environmental
 - 3 priority levels: Low, Normal, High
@@ -94,8 +90,6 @@ civicflow/
 └── scripts/
     └── seed.ts              # Database seeding script
 ```
-
-## Usage
 
 ## Usage
 
@@ -155,10 +149,6 @@ model Report {
   createdAt DateTime @default(now())     // Auto timestamp
 }
 ```
-
-
-
-## Roadmap
 
 ## Roadmap
 
