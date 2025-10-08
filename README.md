@@ -22,13 +22,14 @@ A modern web application where citizens can report local issues and administrato
 ![Dashboard](./public/screenshots/dashboard.png)
 *Professional dashboard with statistics, filtering, sorting, and report management capabilities*
 
-## tech stack
+## Tech Stack
 
-- Next.js
-- Tailwind 
-- Prisma
-- SQLite
-- TypeScript
+- **Next.js 15.2.4** - React framework with App Router
+- **Tailwind CSS 4.0** - Utility-first CSS framework
+- **Prisma 6.5.0** - Type-safe ORM
+- **SQLite** - Lightweight database
+- **TypeScript 5.8** - Type safety
+- **Zod 3.24** - Schema validation
 
 ## Quick Start
 
@@ -63,22 +64,24 @@ Open [http://localhost:3000](http://localhost:3000) to view the app
 - 🎨 Clean, professional UI
 
 ### Admin Dashboard
-- 📈 Statistics overview (Total reports, This week, Categories, High priority)
-- 🔍 Advanced filtering by category and priority
-- 🗂️ Sorting by date, priority, or category
-- 📋 Detailed report view with user information
-- ✏️ Update report status (Pending, In Progress, Resolved, Rejected)
-- 🗑️ Delete reports with confirmation
-- 🌓 Dark mode support
-- 📱 Fully responsive design
+- 📈 **Statistics Overview**: Total reports, This week count, Unique categories, High priority alerts
+- 🔍 **Advanced Filtering**: Filter by category (Infrastructure, Environmental, Public Safety, Healthcare, Education) and priority levels
+- 🗂️ **Smart Sorting**: Sort by date (newest first), priority (high→low), or category (alphabetical)
+- 📋 **Detailed Report Cards**: User info, timestamps, category badges, priority indicators
+- ✏️ **Status Management**: Real-time status updates (Pending → In Progress → Resolved/Rejected)
+- 🗑️ **Safe Deletion**: Delete reports with confirmation dialog
+- 🌓 **Dark Mode**: Automatic theme switching support
+- 📱 **Responsive Design**: Works perfectly on desktop, tablet, and mobile
 
 ### Technical Features
-- ⚡ Built with Next.js 15 App Router
-- 🎨 Tailwind CSS 4 for styling
-- 💾 Prisma ORM with SQLite database
-- 🔒 Type-safe with TypeScript
-- 🚀 Optimized production build
+- ⚡ Built with Next.js 15.2.4 App Router for optimal performance
+- 🎨 Tailwind CSS 4.0 with dark mode support
+- 💾 Prisma 6.5.0 ORM with SQLite database
+- 🔒 Type-safe with TypeScript 5.8 and Zod validation
+- 🚀 Optimized production build (dashboard: 3.36 kB)
 - ♿ Accessible and semantic HTML
+- 🔄 Real-time status updates without page refresh
+- 📱 Fully responsive design for all screen sizes
 
 ## Project Structure
 
@@ -110,11 +113,13 @@ civicflow/
 4. Describe the issue
 5. Submit the report
 
-### View Reports (Admin)
+### Manage Reports (Admin)
 1. Navigate to `/dashboard`
 2. View statistics and all submitted reports
-3. Use filters to find specific reports
+3. Use filters to find specific reports by category and priority
 4. Sort by date, priority, or category
+5. Update report status (Pending → In Progress → Resolved/Rejected)
+6. Delete reports with confirmation dialog
 
 ## API Routes
 
@@ -167,15 +172,25 @@ model Report {
 
 ## Roadmap
 
+### ✅ Completed Features
+- [x] Report submission with validation
+- [x] Admin dashboard with statistics
+- [x] Filtering and sorting capabilities  
 - [x] Report status tracking (Pending, In Progress, Resolved, Rejected)
 - [x] Delete reports from dashboard
+- [x] Dark mode support
+- [x] Responsive design
+
+### 🔄 Planned Features
+- [ ] User authentication system
 - [ ] Email notifications for new reports
-- [ ] File upload support for evidence
-- [ ] Authentication system
-- [ ] Email templates
-- [ ] Export reports to CSV
-- [ ] Report analytics and trends
+- [ ] File upload support for evidence/photos
+- [ ] Email templates for status updates
+- [ ] Export reports to CSV/PDF
+- [ ] Report analytics and trends dashboard
 - [ ] Activity logs and audit trail
+- [ ] Bulk actions (delete multiple, status updates)
+- [ ] Report assignment to staff members
 
 ## Contributing
 
