@@ -147,14 +147,9 @@ export default function Dashboard() {
 					</div>
 				) : (
 					<div className="space-y-6">
-						<div className="flex items-center justify-between mb-2">
-							<div>
-								<h2 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h2>
-								<p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Monitor and manage reports</p>
-							</div>
-							<Link href="/" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition text-sm font-medium">
-								+ New Report
-							</Link>
+						<div className="mb-2">
+							<h2 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h2>
+							<p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Monitor and manage reports</p>
 						</div>
 
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
