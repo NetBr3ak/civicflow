@@ -177,7 +177,7 @@ export default function Home() {
         <div className="grid md:grid-cols-3 gap-6">
           <div className="md:col-span-2 order-1">
             {submitted ? (
-              <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 text-center">
+              <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 text-center animate-fade-in">
                 <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-3">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
