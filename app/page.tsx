@@ -148,8 +148,8 @@ export default function Home() {
     : 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400';
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <header className="bg-blue-800 dark:bg-blue-900 text-white py-3 px-4 shadow-md">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+      <header className="bg-blue-800 dark:bg-blue-900 text-white py-4 px-4 shadow-md">
         <div className="max-w-7xl mx-auto flex flex-row items-center justify-between">
           <div className="flex items-center">
             <Image
@@ -173,7 +173,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 py-4">
+      <main className="flex-1 max-w-7xl mx-auto px-4 py-8 w-full">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="md:col-span-2 order-1">
             {submitted ? (
@@ -194,13 +194,13 @@ export default function Home() {
                 </button>
               </div>
             ) : (
-              <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md">
-                <div className="bg-gradient-to-r from-blue-700 to-blue-600 p-4 rounded-t-lg">
-                  <h1 className="text-xl text-white font-bold">Submit a Report</h1>
-                  <p className="text-blue-100 text-sm">Please provide details about your concern</p>
+              <div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg">
+                <div className="bg-gradient-to-r from-blue-700 to-blue-600 p-5 rounded-t-lg">
+                  <h1 className="text-2xl text-white font-bold">Submit a Report</h1>
+                  <p className="text-blue-100 text-sm mt-1">Please provide details about your concern</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="p-5 space-y-4">
+                <form onSubmit={handleSubmit} className="p-6 space-y-5">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1" htmlFor="name">
@@ -214,7 +214,7 @@ export default function Home() {
                         onChange={handleInputChange}
                         aria-invalid={errors.name ? "true" : "false"}
                         aria-required="true"
-                        className={`w-full p-2 border ${errors.name ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:text-white`}
+                        className={`w-full p-3 border ${errors.name ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none dark:bg-slate-700 dark:text-white transition-colors`}
                       />
                       {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">{errors.name}</p>}
                     </div>
@@ -233,7 +233,7 @@ export default function Home() {
                         aria-invalid={errors.email ? "true" : "false"}
                         aria-required="true"
                         autoComplete="email"
-                        className={`w-full p-2 border ${errors.email ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:text-white`}
+                        className={`w-full p-3 border ${errors.email ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none dark:bg-slate-700 dark:text-white transition-colors`}
                       />
                       {errors.email && <p className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">{errors.email}</p>}
                     </div>
@@ -251,7 +251,7 @@ export default function Home() {
                         onChange={handleInputChange}
                         aria-invalid={errors.category ? "true" : "false"}
                         aria-required="true"
-                        className={`w-full p-2 border ${errors.category ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:text-white`}
+                        className={`w-full p-3 border ${errors.category ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none dark:bg-slate-700 dark:text-white transition-colors`}
                       >
                         <option value="">Select category</option>
                         <option value="Infrastructure">Infrastructure</option>
@@ -281,7 +281,7 @@ export default function Home() {
                           />
                           <label
                             htmlFor="priority-low"
-                            className="flex justify-center p-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm peer-checked:bg-green-100 peer-checked:border-green-500 peer-checked:text-green-800 dark:peer-checked:bg-green-900/30 dark:peer-checked:border-green-500 dark:peer-checked:text-green-400 cursor-pointer dark:text-gray-300"
+                            className="flex justify-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium peer-checked:bg-green-100 peer-checked:border-green-500 peer-checked:text-green-800 dark:peer-checked:bg-green-900/30 dark:peer-checked:border-green-500 dark:peer-checked:text-green-400 cursor-pointer dark:text-gray-300 hover:border-green-400 transition-all"
                           >
                             Low
                           </label>
@@ -298,7 +298,7 @@ export default function Home() {
                           />
                           <label
                             htmlFor="priority-normal"
-                            className="flex justify-center p-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm peer-checked:bg-blue-100 peer-checked:border-blue-500 peer-checked:text-blue-800 dark:peer-checked:bg-blue-900/30 dark:peer-checked:border-blue-500 dark:peer-checked:text-blue-400 cursor-pointer dark:text-gray-300"
+                            className="flex justify-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium peer-checked:bg-blue-100 peer-checked:border-blue-500 peer-checked:text-blue-800 dark:peer-checked:bg-blue-900/30 dark:peer-checked:border-blue-500 dark:peer-checked:text-blue-400 cursor-pointer dark:text-gray-300 hover:border-blue-400 transition-all"
                           >
                             Normal
                           </label>
@@ -315,7 +315,7 @@ export default function Home() {
                           />
                           <label
                             htmlFor="priority-high"
-                            className="flex justify-center p-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm peer-checked:bg-orange-100 peer-checked:border-orange-500 peer-checked:text-orange-800 dark:peer-checked:bg-orange-900/30 dark:peer-checked:border-orange-500 dark:peer-checked:text-orange-400 cursor-pointer dark:text-gray-300"
+                            className="flex justify-center p-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium peer-checked:bg-orange-100 peer-checked:border-orange-500 peer-checked:text-orange-800 dark:peer-checked:bg-orange-900/30 dark:peer-checked:border-orange-500 dark:peer-checked:text-orange-400 cursor-pointer dark:text-gray-300 hover:border-orange-400 transition-all"
                           >
                             High
                           </label>
@@ -341,7 +341,7 @@ export default function Home() {
                       maxLength={500}
                       aria-invalid={errors.message ? "true" : "false"}
                       aria-required="true"
-                      className={`w-full p-2 border ${errors.message ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:text-white`}
+                      className={`w-full p-3 border ${errors.message ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none dark:bg-slate-700 dark:text-white transition-colors`}
                     />
                     {errors.message && <p className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">{errors.message}</p>}
                   </div>
@@ -400,10 +400,10 @@ export default function Home() {
           </div>
 
           <div className="md:col-span-1 order-2 md:order-1">
-            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-4 sticky top-4">
-              <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-3">Reporting Guidelines</h2>
+            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-5 sticky top-4">
+              <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Reporting Guidelines</h2>
 
-              <div className="space-y-3 text-gray-600 dark:text-gray-300">
+              <div className="space-y-4 text-gray-600 dark:text-gray-300">
                 <div className="flex items-start">
                   <div className="bg-blue-100 dark:bg-blue-900 p-1 rounded-full mr-2">
                     <Image src="/file.svg" alt="Document" width={16} height={16} className="dark:invert" />
@@ -426,7 +426,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+              <div className="mt-5 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
                 <h3 className="font-medium text-blue-800 dark:text-blue-300 text-xs">Need urgent assistance?</h3>
                 <p className="text-xs mt-1 text-gray-600 dark:text-gray-300">Call our hotline at (555) 123-4567.</p>
               </div>
@@ -435,7 +435,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="bg-gray-100 dark:bg-slate-900 mt-6 py-4 border-t border-gray-200 dark:border-gray-800">
+      <footer className="bg-gray-100 dark:bg-slate-900 mt-auto py-6 border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-xs text-gray-500 dark:text-gray-400">

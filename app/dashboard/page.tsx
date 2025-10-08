@@ -81,8 +81,8 @@ export default function Dashboard() {
 	}, {});
 
 	return (
-		<div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-			<header className="bg-blue-800 dark:bg-blue-900 text-white py-3 px-4 shadow-md">
+		<div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+			<header className="bg-blue-800 dark:bg-blue-900 text-white py-4 px-4 shadow-md">
 				<div className="max-w-7xl mx-auto flex flex-row items-center justify-between">
 					<div className="flex items-center">
 						<Image
@@ -111,7 +111,7 @@ export default function Dashboard() {
 					</div>
 				</div>
 			</header>
-			<main className="max-w-7xl mx-auto px-4 py-4">
+			<main className="flex-1 max-w-7xl mx-auto px-4 py-8 w-full">
 				{loading ? (
 					<div className="flex justify-center items-center p-8">
 						<div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
@@ -128,12 +128,12 @@ export default function Dashboard() {
 						</button>
 					</div>
 				) : (
-					<div className="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden">
-						<div className="bg-gradient-to-r from-blue-700 to-blue-600 p-4">
-							<h1 className="text-xl text-white font-bold">Reports Dashboard</h1>
-							<p className="text-sm text-blue-100">Review and manage submitted reports</p>
+					<div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
+						<div className="bg-gradient-to-r from-blue-700 to-blue-600 p-5">
+							<h1 className="text-2xl text-white font-bold">Reports Dashboard</h1>
+							<p className="text-sm text-blue-100 mt-1">Review and manage submitted reports</p>
 						</div>
-						<div className="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 border-b border-gray-200 dark:border-gray-700">
+						<div className="grid grid-cols-1 sm:grid-cols-4 gap-4 p-6 border-b border-gray-200 dark:border-gray-700">
 							<div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 shadow-sm">
 								<p className="text-sm text-gray-500 dark:text-gray-400">Total Reports</p>
 								<p className="text-xl font-bold text-gray-900 dark:text-white">{reports.length}</p>
@@ -158,8 +158,8 @@ export default function Dashboard() {
 								</p>
 							</div>
 						</div>
-						<div className="p-4">
-							<div className="flex justify-between items-center mb-3">
+						<div className="p-6">
+							<div className="flex justify-between items-center mb-4">
 								<h2 className="text-lg font-semibold text-gray-800 dark:text-white">All Reports</h2>
 								<div className="flex space-x-2">
 									<Link href="/" className="text-xs px-3 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition">
@@ -167,7 +167,7 @@ export default function Dashboard() {
 									</Link>
 								</div>
 							</div>
-							<div className="space-y-3">
+							<div className="space-y-4">
 								{reports.length === 0 ? (
 									<div className="text-center py-8 text-gray-500 dark:text-gray-400">
 										No reports have been submitted yet.
@@ -225,7 +225,7 @@ export default function Dashboard() {
 					</div>
 				)}
 			</main>
-			<footer className="bg-gray-100 dark:bg-slate-900 mt-6 py-4 border-t border-gray-200 dark:border-gray-800">
+			<footer className="bg-gray-100 dark:bg-slate-900 mt-auto py-6 border-t border-gray-200 dark:border-gray-800">
 				<div className="max-w-7xl mx-auto px-4">
 					<div className="flex flex-col md:flex-row justify-between items-center">
 						<p className="text-xs text-gray-500 dark:text-gray-400">
