@@ -8,19 +8,10 @@ A modern web application where citizens can report local issues and administrato
 
 ## Screenshots
 
-### Report Submission Form
-
-#### Before Submission
+### Form & Dashboard
 ![Report Form - Before](./public/screenshots/form-before.png)
-*Clean and intuitive form for submitting civic reports*
-
-#### After Submission
 ![Report Form - Success](./public/screenshots/form-after.png)
-*Success confirmation with smooth fade-in animation*
-
-### Admin Dashboard
 ![Dashboard](./public/screenshots/dashboard.png)
-*Professional dashboard with statistics, filtering, sorting, and report management capabilities*
 
 ## Tech Stack
 
@@ -56,43 +47,26 @@ Open [http://localhost:3000](http://localhost:3000) to view the app
 
 ## Features
 
-### Report Submission
-- 📝 Submit reports with multiple categories (Infrastructure, Environmental, Public Safety, Healthcare, Education)
-- ⚡ Priority levels (High, Normal, Low)
-- ✅ Form validation with Zod
-- 📊 Real-time character counter
-- 🎨 Clean, professional UI
+## Features
 
-### Admin Dashboard
-- 📈 **Statistics Overview**: Total reports, This week count, Unique categories, High priority alerts
-- 🔍 **Advanced Filtering**: Filter by category (Infrastructure, Environmental, Public Safety, Healthcare, Education) and priority levels
-- 🗂️ **Smart Sorting**: Sort by date (newest first), priority (high→low), or category (alphabetical)
-- 📋 **Detailed Report Cards**: User info, timestamps, category badges, priority indicators
-- ✏️ **Status Management**: Real-time status updates (Pending → In Progress → Resolved/Rejected)
-- 🗑️ **Safe Deletion**: Delete reports with confirmation dialog
-- 🌓 **Dark Mode**: Automatic theme switching support
-- 📱 **Responsive Design**: Works perfectly on desktop, tablet, and mobile
-
-### Technical Features
-- ⚡ Built with Next.js 15.2.4 App Router for optimal performance
-- 🎨 Tailwind CSS 4.0 with dark mode support
-- 💾 Prisma 6.5.0 ORM with SQLite database
-- 🔒 Type-safe with TypeScript 5.8 and Zod validation
-- 🚀 Optimized production build (dashboard: 3.36 kB)
-- ♿ Accessible and semantic HTML
-- 🔄 Real-time status updates without page refresh
-- 📱 Fully responsive design for all screen sizes
+- Submit reports with categories and priorities
+- Admin dashboard with filtering and sorting
+- Update report status (Pending → In Progress → Resolved)
+- Delete reports with confirmation
+- Dark mode support
+- Responsive design
 
 ## Project Structure
 
 ```
 civicflow/
 ├── app/
-│   ├── api/report/          # API endpoints
-│   ├── dashboard/           # Admin dashboard
+│   ├── api/report/          # REST API (GET, POST, PATCH, DELETE)
+│   ├── dashboard/           # Admin management panel
 │   ├── privacy/             # Privacy policy page
 │   ├── terms/               # Terms of service page
-│   └── page.tsx             # Main report form
+│   ├── layout.tsx           # Root layout with global styles
+│   └── page.tsx             # Main report submission form
 ├── lib/
 │   └── prisma.ts            # Prisma client singleton
 ├── prisma/
@@ -106,20 +80,10 @@ civicflow/
 
 ## Usage
 
-### Submit a Report
-1. Navigate to the home page
-2. Fill in your name and email
-3. Select a category and priority level
-4. Describe the issue
-5. Submit the report
+### Usage
 
-### Manage Reports (Admin)
-1. Navigate to `/dashboard`
-2. View statistics and all submitted reports
-3. Use filters to find specific reports by category and priority
-4. Sort by date, priority, or category
-5. Update report status (Pending → In Progress → Resolved/Rejected)
-6. Delete reports with confirmation dialog
+**Submit Report:** Fill form at `/` → Select category/priority → Submit  
+**Manage Reports:** Go to `/dashboard` → Filter, sort, update status, or delete
 
 ## API Routes
 
@@ -164,33 +128,18 @@ model Report {
 }
 ```
 
-### Status Values
-- `pending` - New report awaiting review
-- `in-progress` - Report is being processed
-- `resolved` - Issue has been resolved
-- `rejected` - Report was rejected or invalid
+
 
 ## Roadmap
 
-### ✅ Completed Features
-- [x] Report submission with validation
-- [x] Admin dashboard with statistics
-- [x] Filtering and sorting capabilities  
-- [x] Report status tracking (Pending, In Progress, Resolved, Rejected)
-- [x] Delete reports from dashboard
-- [x] Dark mode support
-- [x] Responsive design
+## Roadmap
 
-### 🔄 Planned Features
-- [ ] User authentication system
-- [ ] Email notifications for new reports
-- [ ] File upload support for evidence/photos
-- [ ] Email templates for status updates
-- [ ] Export reports to CSV/PDF
-- [ ] Report analytics and trends dashboard
-- [ ] Activity logs and audit trail
-- [ ] Bulk actions (delete multiple, status updates)
-- [ ] Report assignment to staff members
+- [x] Report CRUD with status tracking
+- [x] Admin dashboard with filtering
+- [ ] Authentication system
+- [ ] Email notifications
+- [ ] File uploads
+- [ ] Report analytics
 
 ## Contributing
 
