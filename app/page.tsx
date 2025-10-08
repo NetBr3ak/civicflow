@@ -134,27 +134,22 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      <header className="bg-blue-800 dark:bg-blue-900 text-white py-4 px-4 shadow-md">
-        <div className="max-w-7xl mx-auto flex flex-row items-center justify-between">
-          <div className="flex items-center">
+      <header className="bg-white dark:bg-slate-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
             <Image
               src="/globe.svg"
               alt="CivicFlow Logo"
               width={32}
               height={32}
-              className="mr-2 dark:invert"
+              className="dark:invert"
               priority
             />
-            <div>
-              <h1 className="text-xl font-bold">CivicFlow</h1>
-              <p className="text-sm text-blue-100">Citizen Reporting Portal</p>
-            </div>
+            <h1 className="text-xl font-bold text-gray-900 dark:text-white">CivicFlow</h1>
           </div>
-          <div className="flex space-x-4">
-            <Link href="/dashboard" className="text-sm bg-blue-700 hover:bg-blue-600 px-3 py-1 rounded-lg transition duration-200">
-              Dashboard
-            </Link>
-          </div>
+          <Link href="/dashboard" className="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-900 dark:text-white rounded-lg transition">
+            Dashboard
+          </Link>
         </div>
       </header>
 
@@ -179,10 +174,10 @@ export default function Home() {
                 </button>
               </div>
             ) : (
-              <div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg">
-                <div className="bg-gradient-to-r from-blue-700 to-blue-600 p-5 rounded-t-lg">
-                  <h1 className="text-2xl text-white font-bold">Submit a Report</h1>
-                  <p className="text-blue-100 text-sm mt-1">Please provide details about your concern</p>
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+                <div className="border-b border-gray-200 dark:border-gray-700 px-6 py-5">
+                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Submit a Report</h1>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Please provide details about your concern</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-5">
@@ -385,7 +380,7 @@ export default function Home() {
           </div>
 
           <div className="md:col-span-1 order-2 md:order-1">
-            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-5 sticky top-4">
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-5 sticky top-4">
               <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">Reporting Guidelines</h2>
 
               <div className="space-y-4 text-gray-600 dark:text-gray-300">
@@ -420,16 +415,19 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="bg-gray-100 dark:bg-slate-900 mt-auto py-6 border-t border-gray-200 dark:border-gray-800">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              &copy; {new Date().getFullYear()} CivicFlow. All rights reserved.
+      <footer className="mt-auto border-t border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              © 2025 CivicFlow. All rights reserved.
             </p>
-            <div className="flex space-x-4 mt-2 md:mt-0">
-              <a href="#" className="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">How It Works</a>
-              <a href="#" className="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">FAQs</a>
-              <a href="#" className="text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+            <div className="flex gap-6 text-sm">
+              <Link href="/terms" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition">
+                Terms
+              </Link>
+              <Link href="/privacy" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition">
+                Privacy
+              </Link>
             </div>
           </div>
         </div>
