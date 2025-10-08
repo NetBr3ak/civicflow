@@ -8,10 +8,19 @@ A modern web application where citizens can report local issues and administrato
 
 ## Screenshots
 
-### Form & Dashboard
+### Screenshots
+
+**Report Submission Form**
 ![Report Form - Before](./public/screenshots/form-before.png)
+*Form with validation, character counter (500 max), 5 categories, 3 priority levels*
+
+**Success Confirmation** 
 ![Report Form - Success](./public/screenshots/form-after.png)
+*Green success banner with fade animation, form auto-reset, ready for next report*
+
+**Admin Dashboard**
 ![Dashboard](./public/screenshots/dashboard.png)
+*4 stat cards, category/priority filters, date/priority/category sorting, status dropdowns, delete buttons*
 
 ## Tech Stack
 
@@ -49,12 +58,20 @@ Open [http://localhost:3000](http://localhost:3000) to view the app
 
 ## Features
 
-- Submit reports with categories and priorities
-- Admin dashboard with filtering and sorting
-- Update report status (Pending → In Progress → Resolved)
-- Delete reports with confirmation
-- Dark mode support
-- Responsive design
+**Report Submission**
+- 5 categories: Infrastructure, Education, Public Safety, Healthcare, Environmental
+- 3 priority levels: Low, Normal, High
+- 500 character limit with live counter
+- Zod validation (name 2+, email format, message 5+)
+- CSRF protection with custom token
+
+**Admin Dashboard**  
+- Statistics: Total, This Week, Categories, High Priority counts
+- Filtering: By category and priority (dropdown selects)
+- Sorting: Date (newest first), Priority (high→low), Category (A-Z)
+- Status management: 4 states (Pending, In Progress, Resolved, Rejected)
+- Safe deletion with JavaScript confirm dialog
+- Real-time updates without page refresh
 
 ## Project Structure
 
@@ -80,10 +97,21 @@ civicflow/
 
 ## Usage
 
-### Usage
+## Usage
 
-**Submit Report:** Fill form at `/` → Select category/priority → Submit  
-**Manage Reports:** Go to `/dashboard` → Filter, sort, update status, or delete
+**Submit Report**
+1. Go to `/` (main page)
+2. Fill: Name (2+ chars), Email (valid format), Category (required), Priority (optional, defaults to Normal)
+3. Write message (5-500 characters, live counter shows remaining)
+4. Click "Submit Report" → See green success message → Form resets
+
+**Admin Panel**
+1. Go to `/dashboard` → View 4 statistics cards
+2. Filter by Category dropdown (All/Infrastructure/Education/Public Safety/Healthcare/Environmental)
+3. Filter by Priority dropdown (All/Low/Normal/High)  
+4. Sort by Date/Priority/Category using top dropdown
+5. Change status: Click status dropdown → Select new status → Auto-saves
+6. Delete: Click red "Delete" button → Confirm in popup → Report removed
 
 ## API Routes
 
@@ -118,13 +146,13 @@ Update report status
 ```prisma
 model Report {
   id        Int      @id @default(autoincrement())
-  name      String
-  email     String
-  category  String
-  message   String
-  priority  String   @default("normal")
-  status    String   @default("pending")
-  createdAt DateTime @default(now())
+  name      String   // 2+ characters required
+  email     String   // Valid email format
+  category  String   // Infrastructure|Education|Public Safety|Healthcare|Environmental
+  message   String   // 5-500 characters
+  priority  String   @default("normal")  // low|normal|high
+  status    String   @default("pending") // pending|in-progress|resolved|rejected
+  createdAt DateTime @default(now())     // Auto timestamp
 }
 ```
 
@@ -134,12 +162,18 @@ model Report {
 
 ## Roadmap
 
-- [x] Report CRUD with status tracking
-- [x] Admin dashboard with filtering
-- [ ] Authentication system
-- [ ] Email notifications
-- [ ] File uploads
-- [ ] Report analytics
+**Completed**
+- [x] Full CRUD: Create, Read, Update status, Delete reports
+- [x] Dashboard: 4 stats, 3 filters, 3 sort options, status management
+- [x] Validation: Zod schema, CSRF tokens, character limits
+- [x] UI: Dark mode, responsive, Tailwind styling
+
+**Next Features**
+- [ ] Authentication: Login system, role-based access (admin/user)
+- [ ] Email: SMTP notifications on status changes, new reports
+- [ ] Files: Photo/document uploads with preview
+- [ ] Analytics: Charts, trends, export to CSV/PDF
+- [ ] Public: Citizen view with report tracking by ID
 
 ## Contributing
 
