@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-// Define the Report type to match our Prisma schema
 interface Report {
 	id: number;
 	name: string;
@@ -15,7 +14,6 @@ interface Report {
 	priority: string;
 }
 
-// Helper function to determine status badge styling based on category
 const getCategoryStyle = (category: string) => {
 	switch (category) {
 		case "Infrastructure": return "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400";
@@ -27,7 +25,6 @@ const getCategoryStyle = (category: string) => {
 	}
 };
 
-// Helper function for priority styling
 const getPriorityStyle = (priority: string) => {
 	switch (priority) {
 		case "high": return "text-orange-600 dark:text-orange-400";
@@ -36,7 +33,6 @@ const getPriorityStyle = (priority: string) => {
 	}
 };
 
-// Format date for better display and readability
 const formatDate = (date: Date) => {
 	return new Date(date).toLocaleString('en-US', {
 		month: 'short',
@@ -78,7 +74,6 @@ export default function Dashboard() {
 	);
 	const uniqueCategories = new Set(reports.map(r => r.category)).size;
 
-	// Determine priority distribution
 	const priorityCounts = reports.reduce<Record<string, number>>((acc, report) => {
 		const priority = report.priority || "normal";
 		acc[priority] = (acc[priority] || 0) + 1;
