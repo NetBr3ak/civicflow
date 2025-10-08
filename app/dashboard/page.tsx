@@ -12,6 +12,7 @@ interface Report {
 	message: string;
 	createdAt: Date;
 	priority: string;
+	status: string;
 }
 
 const getCategoryStyle = (category: string) => {
@@ -49,6 +50,44 @@ export default function Dashboard() {
 	const [sortBy, setSortBy] = useState<'date' | 'priority' | 'category'>('date');
 	const [filterCategory, setFilterCategory] = useState<string>('all');
 	const [filterPriority, setFilterPriority] = useState<string>('all');
+	const [updatingId, setUpdatingId] = useState<number | null>(null);
+
+	const handleDelete = async (id: number) => {
+		if (!confirm('Are you sure you want to delete this report?')) return;
+
+		try {
+			const response = await fetch(`/api/report?id=${id}`, {
+				method: 'DELETE',
+			});
+
+			if (response.ok) {
+				setReports(reports.filter(r => r.id !== id));
+			}
+		} catch (err) {
+			alert('Failed to delete report');
+		}
+	};
+
+	const handleStatusChange = async (id: number, newStatus: string) => {
+		setUpdatingId(id);
+		try {
+			const response = await fetch(`/api/report?id=${id}`, {
+				method: 'PATCH',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ status: newStatus }),
+			});
+
+			if (response.ok) {
+				setReports(reports.map(r =>
+					r.id === id ? { ...r, status: newStatus } : r
+				));
+			}
+		} catch (err) {
+			alert('Failed to update status');
+		} finally {
+			setUpdatingId(null);
+		}
+	};
 
 	useEffect(() => {
 		const fetchReports = async () => {
@@ -257,7 +296,26 @@ export default function Dashboard() {
 														</span>
 													</div>
 													<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{report.email}</p>
-													<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{report.message}</p>
+													<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">{report.message}</p>
+													<div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
+														<select
+															value={report.status}
+															onChange={(e) => handleStatusChange(report.id, e.target.value)}
+															disabled={updatingId === report.id}
+															className="text-xs px-2 py-1 bg-gray-50 dark:bg-slate-700 border border-gray-300 dark:border-gray-600 rounded text-gray-900 dark:text-white disabled:opacity-50"
+														>
+															<option value="pending">Pending</option>
+															<option value="in-progress">In Progress</option>
+															<option value="resolved">Resolved</option>
+															<option value="rejected">Rejected</option>
+														</select>
+														<button
+															onClick={() => handleDelete(report.id)}
+															className="text-xs px-3 py-1 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400 rounded transition"
+														>
+															Delete
+														</button>
+													</div>
 												</div>
 											</div>
 										</div>

@@ -52,3 +52,43 @@ export async function GET() {
 		return NextResponse.json({ message: "Failed to fetch reports" }, { status: 500 });
 	}
 }
+
+export async function DELETE(req: Request) {
+	try {
+		const { searchParams } = new URL(req.url);
+		const id = searchParams.get('id');
+
+		if (!id) {
+			return NextResponse.json({ message: "Report ID is required" }, { status: 400 });
+		}
+
+		await prisma.report.delete({
+			where: { id: parseInt(id) }
+		});
+
+		return NextResponse.json({ message: "Report deleted successfully" });
+	} catch (error) {
+		return NextResponse.json({ message: "Failed to delete report" }, { status: 500 });
+	}
+}
+
+export async function PATCH(req: Request) {
+	try {
+		const { searchParams } = new URL(req.url);
+		const id = searchParams.get('id');
+		const body = await req.json();
+
+		if (!id) {
+			return NextResponse.json({ message: "Report ID is required" }, { status: 400 });
+		}
+
+		const report = await prisma.report.update({
+			where: { id: parseInt(id) },
+			data: { status: body.status }
+		});
+
+		return NextResponse.json({ message: "Report updated successfully", report });
+	} catch (error) {
+		return NextResponse.json({ message: "Failed to update report" }, { status: 500 });
+	}
+}

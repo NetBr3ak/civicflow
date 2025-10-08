@@ -12,19 +12,15 @@ A modern web application where citizens can report local issues and administrato
 
 #### Before Submission
 ![Report Form - Before](./public/screenshots/form-before.png)
-*Clean and intuitive form for submitting civic reports with category selection and priority levels*
+*Clean and intuitive form for submitting civic reports*
 
 #### After Submission
 ![Report Form - Success](./public/screenshots/form-after.png)
-*Success confirmation with smooth fade-in animation after report submission*
+*Success confirmation with smooth fade-in animation*
 
 ### Admin Dashboard
 ![Dashboard](./public/screenshots/dashboard.png)
-*Professional dashboard with statistics, filtering, and sorting capabilities*
-
-### Reports Management
-![Reports List](./public/screenshots/reports.png)
-*Comprehensive view of all submitted reports with detailed information and status indicators*
+*Professional dashboard with statistics, filtering, sorting, and report management capabilities*
 
 ## tech stack
 
@@ -71,6 +67,8 @@ Open [http://localhost:3000](http://localhost:3000) to view the app
 - 🔍 Advanced filtering by category and priority
 - 🗂️ Sorting by date, priority, or category
 - 📋 Detailed report view with user information
+- ✏️ Update report status (Pending, In Progress, Resolved, Rejected)
+- 🗑️ Delete reports with confirmation
 - 🌓 Dark mode support
 - 📱 Fully responsive design
 
@@ -135,6 +133,17 @@ Create a new report
 ### GET `/api/report`
 Retrieve all reports
 
+### DELETE `/api/report?id={id}`
+Delete a specific report
+
+### PATCH `/api/report?id={id}`
+Update report status
+```json
+{
+  "status": "resolved"
+}
+```
+
 ## Database Schema
 
 ```prisma
@@ -145,19 +154,28 @@ model Report {
   category  String
   message   String
   priority  String   @default("normal")
+  status    String   @default("pending")
   createdAt DateTime @default(now())
 }
 ```
 
+### Status Values
+- `pending` - New report awaiting review
+- `in-progress` - Report is being processed
+- `resolved` - Issue has been resolved
+- `rejected` - Report was rejected or invalid
+
 ## Roadmap
 
+- [x] Report status tracking (Pending, In Progress, Resolved, Rejected)
+- [x] Delete reports from dashboard
 - [ ] Email notifications for new reports
 - [ ] File upload support for evidence
 - [ ] Authentication system
-- [ ] Report status tracking (Open, In Progress, Resolved)
 - [ ] Email templates
 - [ ] Export reports to CSV
 - [ ] Report analytics and trends
+- [ ] Activity logs and audit trail
 
 ## Contributing
 
