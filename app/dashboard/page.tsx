@@ -145,59 +145,55 @@ export default function Dashboard() {
 								<p className="text-3xl font-bold text-gray-900 dark:text-white">{priorityCounts.high || 0}</p>
 							</div>
 						</div>
-						<div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
-							<div className="bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-800 dark:to-slate-700 border-b border-gray-200 dark:border-gray-700 px-6 py-5">
-								<div className="flex justify-between items-center">
-									<div>
-										<h2 className="text-xl font-bold text-gray-900 dark:text-white">Recent Reports</h2>
-										<p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
-											{reports.length} {reports.length === 1 ? 'report' : 'reports'} submitted
-										</p>
-									</div>
-									<Link href="/" className="text-sm px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition shadow-sm hover:shadow-md font-medium">
-										+ New Report
-									</Link>
+						<div>
+							<div className="flex justify-between items-center mb-4">
+								<div>
+									<h2 className="text-2xl font-bold text-gray-900 dark:text-white">Recent Reports</h2>
+									<p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+										{reports.length} total
+									</p>
 								</div>
+								<Link href="/" className="text-sm px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-medium">
+									+ New
+								</Link>
 							</div>
-							<div className="divide-y divide-gray-100 dark:divide-gray-700">
+							<div className="space-y-3">
 								{reports.length === 0 ? (
-									<div className="text-center py-16">
-										<div className="text-gray-400 dark:text-gray-500 text-5xl mb-3">📋</div>
-										<p className="text-gray-600 dark:text-gray-400 font-medium">No reports yet</p>
-										<p className="text-sm text-gray-500 dark:text-gray-500 mt-1">Reports will appear here once submitted</p>
+									<div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-gray-700 p-12 text-center">
+										<div className="text-gray-400 dark:text-gray-500 text-4xl mb-2">📋</div>
+										<p className="text-gray-500 dark:text-gray-400">No reports yet</p>
 									</div>
 								) : (
 									reports.map(report => (
 										<div
 											key={report.id}
-											className="p-5 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition group"
+											className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition"
 										>
 											<div className="flex items-start gap-4">
-												<div className={`w-1 h-full rounded-full flex-shrink-0 ${report.priority === 'high' ? 'bg-orange-500' : report.priority === 'low' ? 'bg-green-500' : 'bg-blue-500'}`}></div>
-												<div className="flex items-start gap-4 flex-1">
-													<div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-sm">
+												<div className="flex-shrink-0">
+													<div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-sm">
 														{report.name.charAt(0).toUpperCase()}
 													</div>
-													<div className="flex-1 min-w-0">
-														<div className="flex items-start justify-between gap-4 mb-2">
-															<div className="flex items-center gap-2 flex-wrap">
-																<p className="font-semibold text-gray-900 dark:text-white text-base">{report.name}</p>
-																<span className={`text-xs px-2.5 py-1 rounded-full font-medium ${getCategoryStyle(report.category)}`}>
-																	{report.category}
-																</span>
-																{report.priority !== 'normal' && (
-																	<span className={`text-xs px-2.5 py-1 rounded-full font-medium ${getPriorityStyle(report.priority)}`}>
-																		{report.priority === 'high' ? '🔴' : '🟢'} {report.priority}
-																	</span>
-																)}
-															</div>
-															<span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap font-medium">
-																{formatDate(report.createdAt)}
+												</div>
+												<div className="flex-1 min-w-0">
+													<div className="flex items-center justify-between gap-3 mb-2">
+														<div className="flex items-center gap-2 flex-wrap">
+															<h3 className="font-semibold text-gray-900 dark:text-white">{report.name}</h3>
+															<span className={`text-xs px-2 py-0.5 rounded font-medium ${getCategoryStyle(report.category)}`}>
+																{report.category}
 															</span>
+															{report.priority !== 'normal' && (
+																<span className={`text-xs px-2 py-0.5 rounded font-medium ${getPriorityStyle(report.priority)}`}>
+																	{report.priority}
+																</span>
+															)}
 														</div>
-														<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{report.email}</p>
-														<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{report.message}</p>
+														<span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
+															{formatDate(report.createdAt)}
+														</span>
 													</div>
+													<p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{report.email}</p>
+													<p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{report.message}</p>
 												</div>
 											</div>
 										</div>
