@@ -94,7 +94,7 @@ export default function Dashboard() {
 						/>
 						<div>
 							<h1 className="text-xl font-bold text-gray-900 dark:text-white">CivicFlow</h1>
-							<p className="text-xs text-gray-500 dark:text-gray-400">Issue Reporting System</p>
+							<p className="text-xs text-gray-500 dark:text-gray-400">Admin Panel</p>
 						</div>
 					</div>
 					<Link href="/" className="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-900 dark:text-white rounded-lg transition">
@@ -103,10 +103,6 @@ export default function Dashboard() {
 				</div>
 			</header>
 			<main className="flex-1 max-w-7xl mx-auto px-4 py-8 w-full">
-				<div className="mb-6">
-					<h2 className="text-2xl font-bold text-gray-900 dark:text-white">Admin Panel</h2>
-					<p className="text-gray-600 dark:text-gray-400 mt-1">Manage and review submitted reports</p>
-				</div>
 				{loading ? (
 					<div className="flex items-center justify-center h-64">
 						<div className="text-center">
