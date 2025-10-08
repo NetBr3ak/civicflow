@@ -92,7 +92,10 @@ export default function Dashboard() {
 							className="dark:invert"
 							priority
 						/>
-						<h1 className="text-xl font-bold text-gray-900 dark:text-white">CivicFlow</h1>
+						<div>
+							<h1 className="text-xl font-bold text-gray-900 dark:text-white">CivicFlow</h1>
+							<p className="text-xs text-gray-500 dark:text-gray-400">Issue Reporting System</p>
+						</div>
 					</div>
 					<Link href="/" className="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-gray-900 dark:text-white rounded-lg transition">
 						← Back
