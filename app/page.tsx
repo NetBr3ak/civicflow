@@ -71,14 +71,9 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const csrfToken = `token-${Date.now()}-${Math.random().toString(36).substring(2)}`;
-
       const res = await fetch("/api/report", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-Token": csrfToken
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form)
       });
 
@@ -156,7 +151,7 @@ export default function Home() {
             {submitted ? (
               <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 text-center animate-fade-in">
                 <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
@@ -189,11 +184,9 @@ export default function Home() {
                         placeholder="Enter your full name"
                         value={form.name}
                         onChange={handleInputChange}
-                        aria-invalid={errors.name ? "true" : "false"}
-                        aria-required="true"
                         className={`w-full p-3 border ${errors.name ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none dark:bg-slate-700 dark:text-white transition-colors`}
                       />
-                      {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">{errors.name}</p>}
+                      {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
                     </div>
 
                     <div>
@@ -207,12 +200,10 @@ export default function Home() {
                         placeholder="your.email@example.com"
                         value={form.email}
                         onChange={handleInputChange}
-                        aria-invalid={errors.email ? "true" : "false"}
-                        aria-required="true"
                         autoComplete="email"
                         className={`w-full p-3 border ${errors.email ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none dark:bg-slate-700 dark:text-white transition-colors`}
                       />
-                      {errors.email && <p className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">{errors.email}</p>}
+                      {errors.email && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
                     </div>
                   </div>
 
@@ -226,8 +217,6 @@ export default function Home() {
                         name="category"
                         value={form.category}
                         onChange={handleInputChange}
-                        aria-invalid={errors.category ? "true" : "false"}
-                        aria-required="true"
                         className={`w-full p-3 border ${errors.category ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none dark:bg-slate-700 dark:text-white transition-colors`}
                       >
                         <option value="">Select category</option>
@@ -238,7 +227,7 @@ export default function Home() {
                         <option value="Environmental">Environmental</option>
                         <option value="Other">Other</option>
                       </select>
-                      {errors.category && <p className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">{errors.category}</p>}
+                      {errors.category && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.category}</p>}
                     </div>
 
                     <div>
@@ -316,11 +305,9 @@ export default function Home() {
                       onChange={handleInputChange}
                       rows={4}
                       maxLength={500}
-                      aria-invalid={errors.message ? "true" : "false"}
-                      aria-required="true"
                       className={`w-full p-3 border ${errors.message ? 'border-red-500 bg-red-50 dark:bg-red-900/20' : 'border-gray-300 dark:border-gray-600'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none dark:bg-slate-700 dark:text-white transition-colors`}
                     />
-                    {errors.message && <p className="mt-1 text-sm text-red-600 dark:text-red-400" role="alert">{errors.message}</p>}
+                    {errors.message && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message}</p>}
                   </div>
 
                   <div className="flex items-start">
@@ -331,7 +318,6 @@ export default function Home() {
                       checked={termsAccepted}
                       onChange={() => setTermsAccepted(prev => !prev)}
                       className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                      aria-required="true"
                     />
                     <label htmlFor="terms" className="ml-2 block text-sm text-gray-600 dark:text-gray-400">
                       I agree to the <Link href="/terms" className="text-blue-600 hover:underline dark:text-blue-400">Terms of Service</Link> and <Link href="/privacy" className="text-blue-600 hover:underline dark:text-blue-400">Privacy Policy</Link>
@@ -341,7 +327,7 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row items-center justify-between pt-1">
                     <div className="w-full sm:w-auto mb-2 sm:mb-0">
                       {status && (
-                        <div className={`text-sm px-3 py-1 rounded-lg ${statusClass}`} role="alert">
+                        <div className={`text-sm px-3 py-1 rounded-lg ${statusClass}`}>
                           {status}
                         </div>
                       )}
@@ -361,7 +347,7 @@ export default function Home() {
                       >
                         {loading ? (
                           <>
-                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>

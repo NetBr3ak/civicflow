@@ -178,7 +178,7 @@ export default function Dashboard() {
 															</span>
 															{report.priority !== 'normal' && (
 																<span className={`text-xs font-medium ${getPriorityStyle(report.priority)}`}>
-																	{report.priority === 'high' ? '🔴' : '🟢'} {report.priority}
+																	{report.priority}
 																</span>
 															)}
 														</div>
